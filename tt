@@ -109,3 +109,21 @@ def _get_time_series(
       pretest_dates=pretest_data.index,
       test_dates=test_data.index,
   )
+
+
+##第四次提交测试解决conflict
+@dataclasses.dataclass
+class TimeSeries:
+  """Time series arrays for analysis."""
+
+  pretest: jnp.ndarray
+  test: jnp.ndarray
+  pretest_dates: pd.Index
+  test_dates: pd.Index
+
+@dataclasses.dataclass
+class TreatmentMask:
+  """Treatment mask and corresponding geo names."""
+
+  mask: jnp.ndarray
+  geos: list[str]
