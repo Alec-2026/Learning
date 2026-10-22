@@ -155,3 +155,16 @@ metrics = analysis_result.results[cell_id]
     if not all_finite_cf.empty:
       local_min_cf = all_finite_cf.min()
       local_max_cf = all_finite_cf.max()
+
+####本地：第六次测试冲突（保留部分）
+ # Add pretest end line for the first two plots if it is set.
+      if pretest_end_date is not None and j < 2:
+        ax.axvline(
+            pretest_end_date,
+            color='grey',
+            linestyle='-',
+            linewidth=1.5,
+            alpha=0.8,
+            label='Pretest end date',
+        )
+##休止
