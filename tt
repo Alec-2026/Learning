@@ -56,3 +56,33 @@ Date:   Thu Oct 22 10:44:40 2026 +0800
 
 commit 8d3554418800e3e3ca2650a78650415cb0c39a9e (tag: 测试tag)
 :
+
+
+##本地第二次提交，验证conflict解决
+def _get_time_series(
+    data: pd.DataFrame,
+    column: str,
+    analysis_config: api.AnalysisConfig,
+) -> TimeSeries:
+  """Extracts pre-test and test time series for a given column."""
+  pivoted_data = util.pivot_and_sort_data(data, column)
+  if analysis_config.pretest_end_date is not None:
+    pretest_data = pivoted_data[
+        pivoted_data.index <= analysis_config.pretest_end_date
+    ]
+  else:
+    pretest_data = pivoted_data[
+        pivoted_data.index < analysis_config.analysis_start_date
+    ]
+  pretest = jnp.array(pretest_data.values)
+  test_data = pivoted_data[
+      (pivoted_data.index >= analysis_config.analysis_start_date)
+      & (pivoted_data.index <= analysis_config.analysis_end_date)
+  ]
+  test = jnp.array(test_data.values)
+  return TimeSeries(
+      pretest=pretest,
+      test=test,
+      pretest_dates=pretest_data.index,
+      test_dates=test_data.index,
+  )
