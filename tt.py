@@ -196,4 +196,4 @@ metrics = analysis_result.results[cell_id]
 
 #10.将分支推送到远程仓库
 
-#
+#11.删除分支：要提前切换到其他分支，才可以删除当前分支
