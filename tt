@@ -129,7 +129,6 @@ class TreatmentMask:
   geos: list[str]
 
 
-
 ###本地：第五次测试冲突解决
 metrics = analysis_result.results[cell_id]
 
@@ -138,3 +137,21 @@ metrics = analysis_result.results[cell_id]
     local_min_pw, local_max_pw = np.inf, -np.inf
     local_min_l, local_max_l = np.inf, -np.inf
     local_min_i, local_max_i = np.inf, -np.inf
+
+#####远程：第五次测试冲突解决
+ # 2. Collect all finite values to determine local y-limits.
+    # Observed vs. Counterfactual
+    df_cf = metrics.counterfactual_conversions
+    df_cf_test = df_cf[df_cf.index >= start_dt].copy()
+    low_cf = df_cf_test['lower_bound']
+    high_cf = df_cf_test['upper_bound']
+    valid_obs = df_cf['observed'][np.isfinite(df_cf['observed'])]
+    valid_cf = df_cf['counterfactual'][np.isfinite(df_cf['counterfactual'])]
+    valid_low_cf = low_cf[np.isfinite(low_cf)]
+    valid_high_cf = high_cf[np.isfinite(high_cf)]
+    all_finite_cf = pd.concat(
+        [valid_obs, valid_cf, valid_low_cf, valid_high_cf]
+    )
+    if not all_finite_cf.empty:
+      local_min_cf = all_finite_cf.min()
+      local_max_cf = all_finite_cf.max()
