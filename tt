@@ -56,3 +56,26 @@ Date:   Thu Oct 22 10:44:40 2026 +0800
 
 commit 8d3554418800e3e3ca2650a78650415cb0c39a9e (tag: 测试tag)
 :
+
+
+##第二次测试冲突解决代号597
+
+import datetime
+from pprint import pprint
+import warnings
+from IPython.display import display
+import meridian_geox as geox
+import pandas as pd
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings(
+    "ignore",
+    message="invalid value encountered in divide",
+    category=RuntimeWarning,
+)
+
+pd.set_option("display.max_columns", None)
+
+meridian_geox_root = None
