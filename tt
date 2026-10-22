@@ -156,19 +156,25 @@ metrics = analysis_result.results[cell_id]
       local_min_cf = all_finite_cf.min()
       local_max_cf = all_finite_cf.max()
 
+##第6.1次保留部分代码
+ # Step 1: LOO Cross-Validation and Gap Calculation
+  for k in range(num_dates):
+    # Omit evaluation index k from the training dataset
+    train_x = np.delete(t, k)
+    train_y = np.delete(y, k)
 
-##本地：第六次测试冲突（删除部分）
-  # --- Plot 3: Cumulative Lift (Test Period Only) ---
-    ax_l = axes[2, 0]
-    df_l_test = metrics.cumulative_lift[
-        metrics.cumulative_lift.index >= start_dt
-    ]
-    ax_l.plot(
-        df_l_test.index,
-        df_l_test['lift'],
-        label=f'Cumulative lift of {cell_id}',
-        color=color_b,
-        linewidth=2.5,
-    )
-    low_l = df_l_test['lower_bound']
-    high_l = df_l_test['upper_bound']
+    # Fit OLS line: y_t ~ alpha + beta * t
+    slope, intercept = np.polyfit(train_x, train_y, 1)
+
+    # Predict the omitted index k
+    y_pred = intercept + slope * t[k]
+    gaps.append(abs(y[k] - y_pred))
+
+  gaps = np.array(gaps)
+
+  # Step 2: Calculate the empirical IQR threshold
+  q75, q25 = np.percentile(gaps, [75, 25])
+  iqr = q75 - q25
+  cutoff = q75 + (multiplier * iqr)
+
+  return gaps, cutoff
