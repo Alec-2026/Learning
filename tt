@@ -155,3 +155,20 @@ metrics = analysis_result.results[cell_id]
     if not all_finite_cf.empty:
       local_min_cf = all_finite_cf.min()
       local_max_cf = all_finite_cf.max()
+
+
+##本地：第六次测试冲突（删除部分）
+  # --- Plot 3: Cumulative Lift (Test Period Only) ---
+    ax_l = axes[2, 0]
+    df_l_test = metrics.cumulative_lift[
+        metrics.cumulative_lift.index >= start_dt
+    ]
+    ax_l.plot(
+        df_l_test.index,
+        df_l_test['lift'],
+        label=f'Cumulative lift of {cell_id}',
+        color=color_b,
+        linewidth=2.5,
+    )
+    low_l = df_l_test['lower_bound']
+    high_l = df_l_test['upper_bound']
