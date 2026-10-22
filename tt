@@ -1,0 +1,20 @@
+#第一行：U：文件没有被跟踪，没有添加至暂存区
+#第二行：A：
++ ： git add
+- ： git quit
+
+撤销：放弃暂存
+
+## 第三次修改：验证git add撤销
+
+no changes added to commit (use "git add" and/or "git commit -a")
+alec@alecdeMac-mini testxx % git remote -v
+origin  https://github.com/Alec-2026/Learning.git (fetch)
+origin  https://github.com/Alec-2026/Learning.git (push)
+alec@alecdeMac-mini testxx % git config
+error: no action specified
+alec@alecdeMac-mini testxx % git config
+error: no action specified
+alec@alecdeMac-mini testxx % git log
+
+## 撤销提交：git reset --soft HEAD^1
