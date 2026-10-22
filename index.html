@@ -1,0 +1,12 @@
+#测试分支（branch分支开发）
+# Percentage of high zero response during the pretest period only.
+  if not pretest_data.empty:
+    pivoted_conversions = pretest_data.pivot_table(
+        index=api.DATE,
+        columns=api.LOCATION,
+        values=api.CONVERSIONS,
+        aggfunc='sum',
+    ).fillna(0)
+    zero_response_pct = (pivoted_conversions == 0).values.mean()
+  else:
+    zero_response_pct = 0.0

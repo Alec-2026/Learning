@@ -159,11 +159,14 @@ metrics = analysis_result.results[cell_id]
 ##第6.1次保留部分代码
  # Step 1: LOO Cross-Validation and Gap Calculation
   for k in range(num_dates):
-    # Omit evaluation index k from the training dataset
+    # Omit evaluation index k from the training dataset 
     train_x = np.delete(t, k)
     train_y = np.delete(y, k)
 
-    # Fit OLS line: y_t ~ alpha + beta * t
+    # Fit OLS line: y_t ~ alpha + beta * t，公式为：
+    # y_t = alpha + beta * t
+    # y_t = y_t - alpha
+    # y_t = y_t - beta * t
     slope, intercept = np.polyfit(train_x, train_y, 1)
 
     # Predict the omitted index k
@@ -178,3 +181,15 @@ metrics = analysis_result.results[cell_id]
   cutoff = q75 + (multiplier * iqr)
 
   return gaps, cutoff
+
+
+##同步功能：测试
+#再提交一个版本：第五行提交git commit -m "测试"
+#拉取和推送同步：先pull再push
+#在点击同步时可能会有冲突，需要手动解决冲突；最后再同步
+#同步完成后，本地和远程的代码就会一致了
+
+
+##9/新建分支：测试分支
+#接下来的开发在branch_test1分支上进行
+
