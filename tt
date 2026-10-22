@@ -18,3 +18,33 @@ error: no action specified
 alec@alecdeMac-mini testxx % git log
 
 ## 撤销提交：git reset --soft HEAD^1
+
+##线上提交的部分，以版本信息为例
+lec@alecdeMac-mini testxx % git log   
+commit 4d74b94be64d89075ef5e8cc35f72da607adfa69 (HEAD -> main, origin/main, origin/HEAD)
+Merge: c8c1747 f50c54f
+Author: Alec Lee <ace.lby2023@gmail.com>
+Date:   Thu Oct 22 11:36:58 2026 +0800
+
+    Merge branch 'main' of https://github.com/Alec-2026/Learning
+
+commit c8c1747b85bc6113b216af3188f9919e5f02f424
+Author: Alec Lee <ace.lby2023@gmail.com>
+Date:   Thu Oct 22 11:33:28 2026 +0800
+
+    第二次提交
+
+commit f50c54f29187ac78691c503e708f0214899174a7
+Author: Alec Lee <ace.lby2023@gmail.com>
+Date:   Thu Oct 22 10:49:06 2026 +0800
+
+    Remove tracked macOS system files
+
+commit 2cd1af7df6899a09d7d9c5203af55c2ffefb15d1
+Author: Alec Lee <ace.lby2023@gmail.com>
+Date:   Thu Oct 22 10:44:40 2026 +0800
+
+    第二次提交
+
+commit 8d3554418800e3e3ca2650a78650415cb0c39a9e (tag: 测试tag)
+:
