@@ -127,3 +127,14 @@ class TreatmentMask:
 
   mask: jnp.ndarray
   geos: list[str]
+
+
+
+###本地：第五次测试冲突解决
+metrics = analysis_result.results[cell_id]
+
+    # 1. Initialize local min/max for Y-axis scaling for the current cell.
+    local_min_cf, local_max_cf = np.inf, -np.inf
+    local_min_pw, local_max_pw = np.inf, -np.inf
+    local_min_l, local_max_l = np.inf, -np.inf
+    local_min_i, local_max_i = np.inf, -np.inf
